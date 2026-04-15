@@ -264,12 +264,6 @@ SQL file used:
 
 ---
 
-# 👨‍💻 AUTHOR
-
-**Dhruv Prajapati**
-
----
-
 # 🔥 FINAL NOTE
 
 This is not just SQL practice.
@@ -280,13 +274,12 @@ This is:
 
 ---
 
-If you want next level:
+# 👨‍💻 AUTHOR
 
-👉 I can make:
+**Dhruv Prajapati**
 
-* 💎 Ultra premium GitHub README (animated badges)
-* 📄 10–15 page project report
-* 🎤 Viva questions + answers
-* 📊 ER Diagram (diagram image)
+---
 
-Just tell me 👍
+
+
+
