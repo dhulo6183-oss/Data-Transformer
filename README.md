@@ -1,7 +1,3 @@
-Alright — let’s make this **completely different style README** (not typical boring one).
-This will look like a **portfolio + story + premium GitHub project** 🔥
-
-👉 Copy–paste this:
 
 ---
 
