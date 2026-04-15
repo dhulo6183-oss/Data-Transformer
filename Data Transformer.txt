@@ -1,0 +1,172 @@
+CREATE TABLE customers (
+CustomerID INT PRIMARY KEY,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Email VARCHAR(100),
+RegistrationDate DATE
+ );
+
+INSERT INTO customers VALUES
+(1, 'John', 'Doe', 'john.doe@email.com', '2022-03-15'),
+(2, 'Jane', 'Smith', 'jane.smith@email.com', '2021-11-02'),
+(3, 'Amit', 'Shah', 'amit.shah@email.com', '2023-01-10'),
+(4, 'Riya', 'Patel', 'riya.patel@email.com', '2023-02-05'),
+(5, 'Rahul', 'Mehta', 'rahul.mehta@email.com', '2022-12-20'),
+(6, 'Neha', 'Sharma', 'neha.sharma@email.com', '2023-03-01'),
+(7, 'Vikas', 'Gupta', 'vikas.gupta@email.com', '2022-10-11'),
+(8, 'Pooja', 'Verma', 'pooja.verma@email.com', '2023-04-18'),
+(9, 'Karan', 'Malhotra', 'karan@email.com', '2023-05-22'),
+(10, 'Sneha', 'Kapoor', 'sneha@email.com', '2022-09-30');
+
+
+CREATE TABLE orders (
+OrderID INT PRIMARY KEY,
+CustomerID INT,
+OrderDate DATE,
+TotalAmount DECIMAL(10,2),
+FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+);
+
+INSERT INTO orders VALUES
+(101, 1, '2023-07-01', 150.50),
+(102, 2, '2023-07-05', 200.75),
+(103, 3, '2023-07-07', 500.00),
+(104, 4, '2023-07-10', 1200.25),
+(105, 5, '2023-07-12', 750.00),
+(106, 6, '2023-07-15', 300.40),
+(107, 7, '2023-07-18', 999.99),
+(108, 8, '2023-07-20', 450.60),
+(109, 9, '2023-07-22', 1100.00),
+(110, 10, '2023-07-25', 650.80);
+
+CREATE TABLE employees (
+EmployeeID INT PRIMARY KEY,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Department VARCHAR(50),
+HireDate DATE,
+Salary DECIMAL(10,2)
+);
+
+INSERT INTO employees VALUES
+(1, 'Mark', 'Johnson', 'Sales', '2020-01-15', 50000.00),
+(2, 'Susan', 'Lee', 'HR', '2021-03-20', 55000.00),
+(3, 'Raj', 'Patel', 'IT', '2019-07-10', 60000.00),
+(4, 'Anita', 'Desai', 'Finance', '2020-09-25', 52000.00),
+(5, 'Rohit', 'Sharma', 'Sales', '2021-11-05', 48000.00),
+(6, 'Priya', 'Mehta', 'HR', '2022-02-14', 53000.00),
+(7, 'Kunal', 'Verma', 'IT', '2018-06-30', 70000.00),
+(8, 'Divya', 'Singh', 'Finance', '2021-08-18', 51000.00),
+(9, 'Arjun', 'Kapoor', 'Sales', '2022-12-01', 47000.00),
+(10, 'Meera', 'Joshi', 'HR', '2023-01-10', 49000.00);
+
+
+--1) INNER JOIN Retrieve all orders and customer details where orders exist
+
+SELECT c.CustomerID, c.FirstName, c.LastName, o.OrderID, o.OrderDate, o.TotalAmount
+FROM customers c
+INNER JOIN orders o
+ON c.CustomerID = o.CustomerID;
+
+-- 2) LEFT JOIN Retrieve all customers and their corresponding orders (if any)
+
+SELECT c.FirstName, c.LastName,  o.TotalAmount FROM customers c
+LEFT JOIN orders o
+ON c.CustomerID = o.CustomerID;
+
+-- 3) RIGHT JOIN Retrieve all orders and their corresponding customers (if any)
+
+SELECT c.FirstName, c.LastName, o.TotalAmount FROM customers c
+RIGHT JOIN orders o
+ON c.CustomerID = o.CustomerID;
+
+-- 4) FULL OUTER JOIN Retrieve all customers and all orders, regardless of matching 
+
+SELECT c.CustomerID, c.FirstName, c.LastName, o.OrderID, o.OrderDate, o.TotalAmount
+FROM customers c
+LEFT JOIN orders o
+ON c.CustomerID = o.CustomerID
+
+UNION
+
+SELECT c.CustomerID, c.FirstName, c.LastName, o.OrderID, o.OrderDate, o.TotalAmount
+FROM customers c
+RIGHT JOIN orders o
+ON c.CustomerID = o.CustomerID;
+
+-- 5) Subquery Find customers who have placed orders worth more than the average amount
+
+SELECT c.CustomerID, c.FirstName, c.LastName, o.TotalAmount
+FROM customers c
+JOIN orders o
+ON c.CustomerID = o.CustomerID
+WHERE o.TotalAmount > (SELECT AVG(TotalAmount) FROM orders);
+
+-- 6) Subquery Find employees with salaries above the average salary
+
+SELECT EmployeeID, FirstName, LastName, Salary
+FROM employees
+WHERE Salary > ( SELECT AVG(Salary) FROM employees);
+
+-- 7)Extract year and month from OrderDate
+
+SELECT OrderID, OrderDate,  YEAR(OrderDate) AS Year,MONTH(OrderDate) AS Month FROM orders;
+
+-- 8)Calculate difference in days between order date and current date
+
+SELECT OrderID, OrderDate,  DATEDIFF(CURDATE(), OrderDate) AS DaysDifference FROM orders;
+
+-- 9)Format OrderDate to readable form
+
+SELECT OrderID, OrderDate, DATE_FORMAT(OrderDate, '%d-%b-%Y') AS FormattedDate FROM orders;
+
+-- 10)Concatenate FirstName and LastName to form full name
+
+SELECT CustomerID, CONCAT(FirstName, ' ', LastName) AS FullName
+FROM customers;
+
+-- 11) Replace part of a string Replace 'John' with 'Jonatha
+
+SELECT CustomerID, FirstName, REPLACE(FirstName, 'John', 'Jonathan') AS NewFirstName FROM customers;
+
+-- 12) Convert FirstName to uppercase and LastName to lowercase
+
+SELECT CustomerID, UPPER(FirstName) AS FirstNameUpper , LOWER(LastName) AS LastNameLower FROM customers;
+
+-- 13) Trim extra spaces from Email field
+
+SELECT CustomerID, Email, TRIM(Email) AS CleanEmail FROM customers;
+
+-- 14) Calculate running total of TotalAmount for each order
+
+SELECT OrderID, OrderDate, TotalAmount, SUM(TotalAmount) OVER (ORDER BY OrderDate) AS RunningTotal
+FROM orders;
+
+-- 15) Rank orders based on TotalAmount using RANK()
+
+SELECT OrderID, TotalAmount,RANK() OVER (ORDER BY TotalAmount DESC) AS OrderRank
+FROM orders;
+
+-- 16) Assign discount based on TotalAmount
+
+SELECT OrderID, TotalAmount,
+ CASE
+ WHEN TotalAmount > 1000 THEN '10% Off'
+ WHEN TotalAmount > 500 THEN '5% Off'
+ ELSE 'No Discount'
+ END AS Discount
+FROM orders;
+
+--17) Categorize employee salaries as High, Medium, or Low
+
+SELECT EmployeeID, FirstName, LastName, Salary,
+ CASE
+ WHEN Salary >= 60000 THEN 'High'
+ WHEN Salary >= 50000 THEN 'Medium'
+ ELSE 'Low'
+ END AS SalaryCategory
+FROM employees;
+
+
+
+
