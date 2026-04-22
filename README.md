@@ -30,6 +30,40 @@ This is a **data story system** where:
 And SQL is used as a **tool to uncover patterns**.
 
 ---
+## ◈ Data Universe
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   THE DATA MODEL                    │
+│                                                     │
+│   ┌────────────┐         ┌────────────┐             │
+│   │  customers │ ──────► │   orders   │             │
+│   │            │  1 : N  │            │             │
+│   │ • id       │         │ • id       │             │
+│   │ • name     │         │ • cust_id  │             │
+│   │ • email    │         │ • amount   │             │
+│   └────────────┘         │ • date     │             │
+│                          └────────────┘             │
+│   ┌────────────┐                                    │
+│   │  employees │  (standalone analytics)            │
+│   │            │                                    │
+│   │ • id       │                                    │
+│   │ • name     │                                    │
+│   │ • salary   │                                    │
+│   │ • dept     │                                    │
+│   └────────────┘                                    │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+
+
+
+
+
+
+
 
 ## 🧩 Data Model Snapshot
 
@@ -263,6 +297,37 @@ After this project you understand:
 
 ---
 
+## ◈ Skills You Walk Away With
+
+```
+After completing this project, you can:
+
+  ✦  Connect multiple tables with the right JOIN for the job
+  ✦  Write subqueries that dynamically filter with AVG / MAX / MIN
+  ✦  Work with dates — extract, format, calculate distance
+  ✦  Clean dirty data with TRIM, REPLACE, UPPER / LOWER
+  ✦  Build window functions for running totals and rankings
+  ✦  Encode business rules directly into SQL with CASE logic
+  ✦  Think in terms of "what question does this query answer?"
+```
+
+
+## ◈ What Makes This Different
+
+| Typical SQL Tutorial | This Project |
+|----------------------|--------------|
+| "Here's SELECT syntax" | "Here's a real business question" |
+| Isolated examples | Connected 17-step narrative |
+| Memorize functions | Understand when and why to use each |
+| Just gets it working | Thinks about data quality & cleaning |
+| No business context | Discounts, salary bands, rankings |
+
+---
+
+
+
+
+
 # 📁 DATA SOURCE
 
 SQL file used:
@@ -280,11 +345,12 @@ This is:
 
 ---
 
-# 👨‍💻 AUTHOR
+**👨‍💻 Dhruv Prajapati**
 
-**Dhruv Prajapati**
+![Made with SQL](https://img.shields.io/badge/Made%20with-SQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=flat-square)
 
----
+</div>
 
 
 
