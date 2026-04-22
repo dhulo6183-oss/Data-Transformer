@@ -7,6 +7,16 @@
 
 ---
 
+![SQL](https://img.shields.io/badge/SQL-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
+![Steps](https://img.shields.io/badge/Steps-17-orange?style=for-the-badge)
+![Author](https://img.shields.io/badge/Author-Dhruv%20Prajapati-blueviolet?style=for-the-badge)
+
+
+
+
+
+
 ## 🎯 What is this?
 
 This is not just a SQL project.
