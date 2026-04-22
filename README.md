@@ -344,8 +344,8 @@ This is:
 > 💡 “From data → to decision → to understanding”
 
 ---
-
-**👨‍💻 Dhruv Prajapati**
+## 👨‍💻 Author
+** Dhruv Prajapati **
 
 ![Made with SQL](https://img.shields.io/badge/Made%20with-SQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=flat-square)
